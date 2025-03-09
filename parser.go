@@ -46,7 +46,11 @@ func Parse(curlCmd string) (*Request, error) {
 	jsonMatches := jsonPattern.FindStringSubmatch(curlCmd)
 	if len(jsonMatches) >= 3 {
 		req.ContentType = "application/json"
-		req.Body = jsonMatches[2]
+		if jsonMatches[1] != "" {
+			req.Body = jsonMatches[1]
+		} else {
+			req.Body = jsonMatches[2]
+		}
 	}
 
 	// bodyを取得

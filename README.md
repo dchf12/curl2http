@@ -19,7 +19,7 @@ echo 'curl -X POST https://example.com --json "{\"A\":\"B\"}"' | curl2http
 **Output:**
 ```
 POST https://example.com
-content: application/json
+content-type: application/json
 
 {
   "A": "B"
