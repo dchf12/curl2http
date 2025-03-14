@@ -62,6 +62,20 @@ func Test_Parse(t *testing.T) {
 			wantErr: false,
 		},
 		{
+			name: "複数行のコマンド（POSTが改行）",
+			curlCmd: `curl https://example.com \
+  -X 'POST' \
+  --json '{"A":"B"}'`,
+			want: &Request{
+				Method:      "POST",
+				URL:         "https://example.com",
+				Headers:     map[string]string{},
+				ContentType: "application/json",
+				Body:        `{"A":"B"}`,
+			},
+			wantErr: false,
+		},
+		{
 			name:    "ヘッダーあり",
 			curlCmd: `curl -X GET https://example.com -H "Authorization: Bearer token"`,
 			want: &Request{

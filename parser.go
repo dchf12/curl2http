@@ -35,7 +35,7 @@ func Parse(curlCmd string) (*Request, error) {
 		req.URL = urlMatches[2]
 	}
 	// メソッドを取得
-	methodPattern := regexp.MustCompile(`-X\s+(\w+)`)
+	methodPattern := regexp.MustCompile(`-X\s+(?:'?(\w+)'?|\w+)`)
 	methodMatches := methodPattern.FindStringSubmatch(curlCmd)
 	if len(methodMatches) >= 2 {
 		req.Method = methodMatches[1]
